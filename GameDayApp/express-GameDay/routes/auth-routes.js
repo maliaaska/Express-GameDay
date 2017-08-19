@@ -10,6 +10,7 @@ const User = require('../models/user-model');
 const Marker = require('../models/marker-model')
 const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
+const upload = require('../config/multer');
 
 router.post('/signup', (req, res, next) => {
   let username = req.body.username;
@@ -103,6 +104,7 @@ router.put('/user/:id', (req, res) => {
   console.log('in service2');
   
   const updates = {
+    image: `/uploads/${req.file.filename}`,
     username: req.body.username,
     name: req.body.name,
     lastName: req.body.lastName,
